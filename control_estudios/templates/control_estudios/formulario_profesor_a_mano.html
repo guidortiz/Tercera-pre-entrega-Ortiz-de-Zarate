@@ -1,0 +1,20 @@
+{% extends "control_estudios/base.html" %}
+
+{% block contenido %}
+<form action="{% url 'crear_profesor' %}" method="post">
+  {% csrf_token %}
+  <p>Nombre del profesor</p>
+  <input type="text" name="nombre">
+  <p>Apellido del profesor</p>
+  <input type="text" name="apellido">
+  <p>dni</p>
+  <input type="number" name="apellido" step="1">
+  <p>email</p>
+  <input type="text" name="email">
+  <p>profesion</p>
+  <input type="text" name="profesion">
+  <p>bio</p>
+  <input type="text" name="bio">
+  <input type="submit" value="Guardar">
+</form>
+{% endblock contenido %}

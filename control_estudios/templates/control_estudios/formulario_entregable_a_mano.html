@@ -1,0 +1,14 @@
+{% extends "control_estudios/base.html" %}
+
+{% block contenido %}
+<form action="{% url 'crear_entregable' %}" method="post">
+  {% csrf_token %}
+  <p>Nombre del entregable</p>
+  <input type="text" name="nombre">
+  <p>Fecha de entrega</p>
+  <input type="text" name="fecha_entrega">
+  <p>Status</p>
+  <input type="number" name="esta_aprobado">
+  <input type="submit" value="Enviar">
+</form>
+{% endblock contenido %}

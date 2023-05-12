@@ -1,0 +1,51 @@
+{% extends "control_estudios/base.html" %}
+
+{% block contenido %}
+<section>
+  <div>
+    <h1>Lista de profesores</h1>
+    <a href="{% url 'crear_profesor' %}">Crear profesor</a>
+    <br><br>
+    <form action="{% url 'buscar_profesor' %}" method="post">
+      {% csrf_token %}
+      <input type="text" name="busqueda">
+      <input type="submit" value="Buscar por dni">
+    </form>
+    <br>
+
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Dni</th>
+          <th>Profesion</th>
+          <th></th>
+          <th></th>
+        </tr>
+        {% for profesor in profesores %}
+        <tr>
+          <td>{{ profesor.id }}</td>
+          <td>{{ profesor.nombre }}</td>
+          <td>{{ profesor.apellido }}</td>
+          <td>{{ profesor.dni }}</td>
+          <td>{{ profesor.profesion }}</td>
+          <td>
+            <a href="{% url 'editar_profesor' profesor.id %}">Editar</a>
+          </td>
+          <td>
+            <form action="{% url 'eliminar_profesor' profesor.id %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="eliminar"/>
+            </form
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+</section>
+{% endblock contenido %}
+
